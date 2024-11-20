@@ -40,7 +40,8 @@ Para resolver esta tarea, usaremos herramientas de visualización y análisis de
 
 # Filtrar valores NA en latitud, longitud, masa y año
 meteoritos <- meteoritos %>% 
-  filter(!is.na(lat), !is.na(long), !is.na(mass), !is.na(year))
+    filter(!is.na(lat), !is.na(long), !is.na(mass), !is.na(year))
+
 
 
 # Crear una nueva columna de continentes usando latitud y longitud
@@ -60,14 +61,15 @@ meteoritos <- meteoritos %>%
   mutate(year_group = floor(year / 100) * 100)  # Agrupa por siglos
 
 # Crear categorías de masa con los nuevos rangos
-meteoritos <- meteoritos %>%
-  mutate(mass_category = case_when(
-    mass < 100 * 1000 ~ "Hasta 100 kg",       # Convertir a gramos
-    mass < 500 * 1000 ~ "Hasta 500 kg",       # Convertir a gramos
-    mass < 1000 * 1000 ~ "Hasta 1000 kg",     # Convertir a gramos
-    mass < 5000 * 1000 ~ "Hasta 5000 kg",     # Convertir a gramos
-    TRUE ~ "Más de 5000 kg"
-  ))
+meteoritos <- meteoritos %>% 
+    mutate(mass_category = case_when(
+        mass < 100 * 1000 ~ "Hasta 100 kg",         # Convertir a gramos
+        mass < 500 * 1000 ~ "Hasta 500 kg",         # Convertir a gramos
+        mass < 1000 * 1000 ~ "Hasta 1000 kg",       # Convertir a gramos
+        mass < 5000 * 1000 ~ "Hasta 5000 kg",       # Convertir a gramos
+        TRUE ~ "Más de 5000 kg"
+    ))
+
 # Filtrar los datos hasta el año 2013
 meteoritos_2013 <- meteoritos %>%
   filter(year <= 2013)
